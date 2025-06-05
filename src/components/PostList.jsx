@@ -1,18 +1,13 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import Post from './Post';
-import NewPost from './NewPost';
-import Modal from './Modal';
-import classes from './PostList.module.css';
+import Post from "./Post";
+import NewPost from "./NewPost";
+import Modal from "./Modal";
+import classes from "./PostList.module.css";
 
-function PostList() {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
-  const [enteredBody, setEnteredBody] = useState('');
-  const [enteredAuthor, setEnteredAuthor] = useState('');
-
-  function hideModalHandler() {
-    setModalIsVisible(false);
-  }
+function PostList({ isPosting, hideModalHandler }) {
+  const [enteredBody, setEnteredBody] = useState("");
+  const [enteredAuthor, setEnteredAuthor] = useState("");
 
   function bodyChangeHandler(event) {
     setEnteredBody(event.target.value);
@@ -24,7 +19,7 @@ function PostList() {
 
   return (
     <>
-      {modalIsVisible && (
+      {isPosting && (
         <Modal onClose={hideModalHandler}>
           <NewPost
             onBodyChange={bodyChangeHandler}
